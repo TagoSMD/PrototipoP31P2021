@@ -29,7 +29,7 @@ public class AlumnossDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Alumnos alumnos = null;
-        List<Alumnos> facultades = new ArrayList<Alumnos>();
+        List<Alumnos> alumnos1 = new ArrayList<Alumnos>();
 
         try {
             con = Conexion.getConnection();
@@ -53,7 +53,7 @@ public class AlumnossDAO {
                 alumnos.setEstatus_alumno(estatus_alumno);
              
 
-                facultades.add(alumnos);
+                alumnos1.add(alumnos);
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -62,7 +62,7 @@ public class AlumnossDAO {
             Conexion.close(stmt);
             Conexion.close(rs);
         }
-        return facultades;
+        return alumnos1;
     }
 
     public int insert(Alumnos alumnos) {
