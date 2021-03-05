@@ -294,7 +294,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
                         .addComponent(label1)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(btnLimpiar)
@@ -307,9 +307,9 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 245, Short.MAX_VALUE)
+                    .addGap(0, 241, Short.MAX_VALUE)
                     .addComponent(lb)
-                    .addGap(0, 245, Short.MAX_VALUE)))
+                    .addGap(0, 241, Short.MAX_VALUE)))
         );
 
         pack();
@@ -333,11 +333,17 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        AlumnossDAO vendedorDAO = new AlumnossDAO();
-        Alumnos vendedorAEliminar = new Alumnos();
-        vendedorAEliminar.setCarnet_alumno(TxtNombre.getText());
-        vendedorDAO.delete(vendedorAEliminar);
-       // llenadoDeTablas();
+            Alumnos alumnos = new Alumnos();
+        AlumnossDAO alumnosdao = new AlumnossDAO();
+        
+  if (Txtcarnet.getText().length() != 0 && TxtNombre.getText().length() != 0
+                && TxtDirrecion.getText().length() != 0&& TxtTelefono.getText().length() != 0
+                && TxtEmail.getText().length() != 0&& TxtEstatus.getText().length() != 0) {
+     String carnet_alumnos = Txtcarnet.getText();
+            alumnos.setCarnet_alumno(carnet_alumnos);
+
+            alumnosdao.delete(alumnos);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
