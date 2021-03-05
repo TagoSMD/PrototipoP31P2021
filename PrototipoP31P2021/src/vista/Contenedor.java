@@ -5,6 +5,11 @@
  */
 package vista;
 
+import java.awt.Dimension;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author TagoKG
@@ -33,15 +38,8 @@ public class Contenedor extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenu12 = new javax.swing.JMenu();
-        jMenu13 = new javax.swing.JMenu();
-        jMenu14 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -54,11 +52,11 @@ public class Contenedor extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Catologo");
@@ -70,32 +68,21 @@ public class Contenedor extends javax.swing.JFrame {
 
         jMenu5.setText("Mantenimiento");
 
-        jMenu6.setText("Alumnos");
-        jMenu5.add(jMenu6);
+        jMenuItem2.setText("Alumnos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
 
-        jMenu7.setText("Maestros");
-        jMenu5.add(jMenu7);
-
-        jMenu8.setText("Facultades");
-        jMenu5.add(jMenu8);
-
-        jMenu9.setText("Carreras");
-        jMenu5.add(jMenu9);
-
-        jMenu10.setText("Cursos");
-        jMenu5.add(jMenu10);
-
-        jMenu11.setText("Jornadas");
-        jMenu5.add(jMenu11);
-
-        jMenu12.setText("Aulas");
-        jMenu5.add(jMenu12);
-
-        jMenu13.setText("Secciones");
-        jMenu5.add(jMenu13);
-
-        jMenu14.setText("Sedes");
-        jMenu5.add(jMenu14);
+        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem3);
 
         jMenuBar1.add(jMenu5);
 
@@ -124,6 +111,34 @@ public class Contenedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            MantenimientoAlumnos ventana = new MantenimientoAlumnos();
+            jDesktopPane1.add(ventana);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension FrameSize = ventana.getSize();
+            ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        } catch (SQLException ex) {
+            Logger.getLogger(Contenedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+                MantenimientoAlumnos alumnos = null;
+        try {
+            alumnos = new MantenimientoAlumnos();
+        } catch (SQLException ex) {
+            Logger.getLogger(Contenedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Dimension main_window_size =  jMenuItem3.getSize();
+        Dimension second_window_size = alumnos.getSize();
+        alumnos.setLocation((main_window_size.width - second_window_size.width) / 2, (main_window_size.height - second_window_size.height) / 2);
+        alumnos.setVisible(true);
+        jMenuItem3.add(alumnos);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,20 +179,13 @@ public class Contenedor extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu13;
-    private javax.swing.JMenu jMenu14;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }

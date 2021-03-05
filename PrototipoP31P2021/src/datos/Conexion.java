@@ -13,11 +13,10 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Santiago Martinez Diaz
- * 
+ * @author TagoKG
  */
 public class Conexion {
-      private static final String JDBC_URL = "jdbc:mysql://localhost/didactica?useSSL=false&serverTimezone=UTC";
+      private static final String JDBC_URL = "jdbc:mysql://localhost/mantenimiento?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASS = "1234";
     
@@ -48,6 +47,7 @@ public class Conexion {
            ex.printStackTrace(System.out);
         }
     }
+    
     
     
 }

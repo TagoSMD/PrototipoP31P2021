@@ -10,19 +10,28 @@ package dominio;
  * @author TagoKG
  */
 public class Usuario {
-    
-      private int id_usuario;
+     private int id_usuario;
     private String username;
     private String password;
 
+    public Usuario() {
+    }
+
+    public Usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+    
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    
     public Usuario(int id_usuario, String username, String password) {
         this.id_usuario = id_usuario;
         this.username = username;
         this.password = password;
     }
-
-    public Usuario() {
-    }
+    
 
     public int getId_usuario() {
         return id_usuario;

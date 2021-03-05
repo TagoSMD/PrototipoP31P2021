@@ -4,18 +4,54 @@
  * and open the template in the editor.
  */
 package vista;
+import datos.AlumnossDAO;
 
+import dominio.Alumnos;
+
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author TagoKG
  */
 public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
+ public void llenar_tabla() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("carnet_alumno");
+        modelo.addColumn("nombre_alumno");
+        modelo.addColumn("direccion_alumno");
+        modelo.addColumn("telefono_alumno");
+        modelo.addColumn("email_alumno");
+        modelo.addColumn("estatus_alumno");
+        
+        AlumnossDAO alumnosDAO = new AlumnossDAO();
+        List<Alumnos> alumnos = alumnosDAO.select();
+        tablaVendedores.setModel(modelo);
+        String[] dato = new String[6];
+        for (int i = 0; i < alumnos.size(); i++) {
+            dato[0] = alumnos.get(i).getCarnet_alumno();
+            dato[1] = alumnos.get(i).getNombre_alumno();
+            dato[2] = alumnos.get(i).getDireccion_alumno();
+            dato[3] = alumnos.get(i).getTelefono_alumno();
+            dato[4] = alumnos.get(i).getEmail_alumno();
+            dato[5] = alumnos.get(i).getEstatus_alumno();
+            modelo.addRow(dato);
+        }
+    }
+  
 
     /**
      * Creates new form MantenimientoAlumnos
      */
-    public MantenimientoAlumnos() {
+    public MantenimientoAlumnos() throws SQLException {
         initComponents();
+             llenar_tabla();
+   
     }
 
     /**
@@ -27,21 +63,396 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaVendedores = new javax.swing.JTable();
+        btnLimpiar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        label4 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        Txtcarnet = new javax.swing.JTextField();
+        label1 = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JButton();
+        lb = new javax.swing.JLabel();
+        txtbuscado = new javax.swing.JTextField();
+        TxtNombre = new javax.swing.JTextField();
+        TxtDirrecion = new javax.swing.JTextField();
+        TxtTelefono = new javax.swing.JTextField();
+        TxtEmail = new javax.swing.JTextField();
+        TxtEstatus = new javax.swing.JTextField();
+        label5 = new javax.swing.JLabel();
+        label6 = new javax.swing.JLabel();
+        label7 = new javax.swing.JLabel();
+        label8 = new javax.swing.JLabel();
+        label9 = new javax.swing.JLabel();
+        label10 = new javax.swing.JLabel();
+
+        setVisible(true);
+
+        tablaVendedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaVendedores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "carnet", "Nombre", "direccion", "telefono", "email", "estatus"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaVendedores);
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        label4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label4.setText("Alumno");
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        Txtcarnet.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Txtcarnet.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        Txtcarnet.setOpaque(false);
+
+        label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label1.setText("Alumnos;");
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        lb.setForeground(new java.awt.Color(204, 204, 204));
+        lb.setText(".");
+
+        TxtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TxtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        TxtNombre.setOpaque(false);
+
+        TxtDirrecion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TxtDirrecion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        TxtDirrecion.setOpaque(false);
+
+        TxtTelefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TxtTelefono.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        TxtTelefono.setOpaque(false);
+        TxtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtTelefonoActionPerformed(evt);
+            }
+        });
+
+        TxtEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TxtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        TxtEmail.setOpaque(false);
+
+        TxtEstatus.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TxtEstatus.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        TxtEstatus.setOpaque(false);
+
+        label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label5.setText("Estatus:");
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label6.setText("Carnet");
+
+        label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label7.setText("Nombre:");
+
+        label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label8.setText("Email:");
+
+        label9.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label9.setText("Telefono:");
+
+        label10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label10.setText("Dirreccion:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label4)
+                                .addGap(452, 452, 452)
+                                .addComponent(label1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label5)
+                            .addComponent(label6)
+                            .addComponent(label7)
+                            .addComponent(label8)
+                            .addComponent(label9)
+                            .addComponent(label10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Txtcarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtDirrecion, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 557, Short.MAX_VALUE)
+                    .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 533, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(label4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label7)
+                                    .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label6)
+                                    .addComponent(Txtcarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label10)
+                            .addComponent(TxtDirrecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label9)
+                            .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label8)
+                            .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label5)
+                            .addComponent(TxtEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(label1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificar)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnRegistrar))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscar)
+                    .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 245, Short.MAX_VALUE)
+                    .addComponent(lb)
+                    .addGap(0, 245, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+        TxtNombre.setText("");
+        Txtcarnet.setText("");
+        TxtDirrecion.setText("");
+        TxtTelefono.setText("");
+        TxtEmail.setText("");
+        TxtEstatus.setText("");
+        txtbuscado.setText("");
+        btnRegistrar.setEnabled(true);
+        btnModificar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        AlumnossDAO vendedorDAO = new AlumnossDAO();
+        Alumnos vendedorAEliminar = new Alumnos();
+        vendedorAEliminar.setCarnet_alumno(TxtNombre.getText());
+        vendedorDAO.delete(vendedorAEliminar);
+       // llenadoDeTablas();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+            Alumnos alumnos = new Alumnos();
+        AlumnossDAO alumnosdao = new AlumnossDAO();
+
+        if (Txtcarnet.getText().length() != 0 && TxtNombre.getText().length() != 0
+                && TxtDirrecion.getText().length() != 0&& TxtTelefono.getText().length() != 0
+                && TxtEmail.getText().length() != 0&& TxtEstatus.getText().length() != 0) {
+            String carnet_alumno = Txtcarnet.getText();
+            String nombre_alumno = TxtNombre.getText();
+             String direccion_alumno = TxtDirrecion.getText();
+            String telefono_alumno = TxtTelefono.getText();
+              String email_alumno = TxtEmail.getText();
+            String estatus_alumno = TxtEstatus.getText();
+            
+
+            alumnos.setCarnet_alumno(carnet_alumno);
+            alumnos.setNombre_alumno(nombre_alumno);
+            alumnos.setDireccion_alumno(direccion_alumno);
+            alumnos.setTelefono_alumno(telefono_alumno);
+            alumnos.setEmail_alumno(email_alumno);
+            alumnos.setEstatus_alumno(estatus_alumno);
+          
+
+
+            alumnosdao.insert(alumnos);
+
+            try {
+                llenar_tabla();
+            } catch (SQLException ex) {
+                Logger.getLogger(MantenimientoAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Hay campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+     Alumnos alumnos = new Alumnos();
+        AlumnossDAO alumnosdao = new AlumnossDAO();
+        alumnos.setCarnet_alumno(txtbuscado.getText());
+
+        alumnos = alumnosdao.query(alumnos);
+
+        Txtcarnet.setText(alumnos.getCarnet_alumno());
+        TxtNombre.setText(alumnos.getNombre_alumno());
+         TxtDirrecion.setText(alumnos.getDireccion_alumno());
+        TxtTelefono.setText(alumnos.getTelefono_alumno());
+         TxtEmail.setText(alumnos.getEmail_alumno());
+        TxtEstatus.setText(alumnos.getEstatus_alumno());
+      
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+     Alumnos alumnos = new Alumnos();
+        AlumnossDAO alumnosdao = new AlumnossDAO();
+       if (Txtcarnet.getText().length() != 0 && TxtNombre.getText().length() != 0
+                && TxtDirrecion.getText().length() != 0&& TxtTelefono.getText().length() != 0
+                && TxtEmail.getText().length() != 0&& TxtEstatus.getText().length() != 0) {
+            String carnet_alumno = Txtcarnet.getText();
+            String nombre_alumno = TxtNombre.getText();
+             String direccion_alumno = TxtDirrecion.getText();
+            String telefono_alumno = TxtTelefono.getText();
+              String email_alumno = TxtEmail.getText();
+            String estatus_alumno = TxtEstatus.getText();
+            
+
+            alumnos.setCarnet_alumno(carnet_alumno);
+            alumnos.setNombre_alumno(nombre_alumno);
+            alumnos.setDireccion_alumno(direccion_alumno);
+            alumnos.setTelefono_alumno(telefono_alumno);
+            alumnos.setEmail_alumno(email_alumno);
+            alumnos.setEstatus_alumno(estatus_alumno);
+
+    
+            try {
+                llenar_tabla();
+            } catch (SQLException ex) {
+                Logger.getLogger(MantenimientoAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Hay campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void TxtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtTelefonoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxtDirrecion;
+    private javax.swing.JTextField TxtEmail;
+    private javax.swing.JTextField TxtEstatus;
+    private javax.swing.JTextField TxtNombre;
+    private javax.swing.JTextField TxtTelefono;
+    private javax.swing.JTextField Txtcarnet;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label10;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
+    private javax.swing.JLabel label6;
+    private javax.swing.JLabel label7;
+    private javax.swing.JLabel label8;
+    private javax.swing.JLabel label9;
+    private javax.swing.JLabel lb;
+    private javax.swing.JTable tablaVendedores;
+    private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }
